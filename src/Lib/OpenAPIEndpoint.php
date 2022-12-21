@@ -68,37 +68,37 @@ class OpenAPIEndpoint
     }
 
     /**
-     * @param array $formData = [
-     *  [
-     *      'name' => 'name',
-     *      'type' => 'string',
-     *      'example' => '',
-     *      'description' => '',
-     *  ],
-     * ]
-     * @return $this
-     */
-    public function formData(array $formData): self
-    {
-        $this->data['form_data'] = $formData;
-
-        return $this;
-    }
-
-    /**
      * @param array $params = [
-     *  [
+     *  index => [
      *      'name' => 'name',
      *      'type' => 'string',
      *      'example' => '',
      *      'description' => '',
-     *  ],
+     *  ]
      * ]
      * @return $this
      */
     public function params(array $params): self
     {
         $this->data['params'] = $params;
+
+        return $this;
+    }
+
+    /**
+     * @param array $formData = [
+     *  index => [
+     *      'name' => 'name',
+     *      'type' => 'string',
+     *      'example' => '',
+     *      'description' => '',
+     *  ]
+     * ]
+     * @return $this
+     */
+    public function formData(array $formData): self
+    {
+        $this->data['form_data'] = $formData;
 
         return $this;
     }
