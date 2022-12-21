@@ -16,6 +16,7 @@ class OpenAPIDocumentGenerator
             [
                 'info' => [
                     'title' => 'API',
+                    'description' => '',
                     'version' => '1.0.0'
                 ],
                 'servers' => [

@@ -16,6 +16,7 @@ class OpenAPIBuilder
                 'openapi' => '3.0.0',
                 'info' => [
                     'title' => 'API',
+                    'description' => '',
                     'version' => '1.0.0',
                 ],
                 'components' => [

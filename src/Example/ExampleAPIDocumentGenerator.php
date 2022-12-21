@@ -10,6 +10,7 @@ class ExampleAPIDocumentGenerator
     private const OPEN_API_CONFIG = [
         'info' => [
             'title' => 'Example API',
+            'description' => 'Example API',
             'version' => '1.0.0'
         ],
         'servers' => [
