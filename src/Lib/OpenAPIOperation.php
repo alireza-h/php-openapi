@@ -9,6 +9,7 @@ class OpenAPIOperation
     private array $tags = [];
     private string $summary = '';
     private string $description = '';
+    private array $headers = [];
     private array $params = [];
     private array $formData = [];
     private array $responses = [];
@@ -98,6 +99,24 @@ class OpenAPIOperation
     public function description($description): self
     {
         $this->description = implode('', (array)$description);
+
+        return $this;
+    }
+
+    /**
+     * @param array $headers = [
+     *  index => [
+     *      'name' => 'name',
+     *      'type' => 'string',
+     *      'example' => '',
+     *      'description' => '',
+     *  ]
+     * ]
+     * @return $this
+     */
+    public function headers(array $headers): self
+    {
+        $this->headers = $headers;
 
         return $this;
     }
@@ -218,6 +237,18 @@ class OpenAPIOperation
                             ],
                             'required' => true,
                             'example' => '',
+                        ];
+                    }
+
+                    foreach ($this->headers as $header) {
+                        $parameters[] = [
+                            'name' => $header['name'],
+                            'in' => 'header',
+                            'schema' => [
+                                'type' => $header['type'] ?? 'string'
+                            ],
+                            'example' => $header['example'] ?? '',
+                            'description' => $header['description'] ?? '',
                         ];
                     }
 
