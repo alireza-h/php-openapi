@@ -13,6 +13,10 @@ class OpenAPIOperation
     private array $formData = [];
     private array $responses = [];
 
+    private function __construct()
+    {
+    }
+
     public static function request(string $method, string $path): self
     {
         $self = new static();
