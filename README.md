@@ -12,7 +12,7 @@
   responsible to generate Open API json document. Each public method of `OpenAPIOperationGenerator` generates one Open
   API Operation.
 
-- Run `php -S localhost:8001` is project root directory
+- Run `php -S localhost:8001` in project root directory
 
     - Open `http://loclahost:8001` is your browser for Open API json document
     - Open `http://loclahost:8001?swagger` is your browser for Open API Swagger UI
