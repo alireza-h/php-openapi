@@ -5,7 +5,7 @@ namespace AlirezaH\OpenApiGenerator\Lib;
 use Faker\Factory;
 use Faker\Generator;
 
-class OpenAPIEndpointGenerator
+class OpenAPIOperationGenerator
 {
     protected Generator $faker;
 
