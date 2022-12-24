@@ -121,6 +121,7 @@ class OpenAPIOperation
      *  index => [
      *      'name' => 'name',
      *      'type' => 'string',
+     *      'format' => '',
      *      'example' => '',
      *      'description' => '',
      *  ]
@@ -186,9 +187,9 @@ class OpenAPIOperation
                                         foreach ($this->formData as $property) {
                                             $properties[$property['name']] = [
                                                 'type' => $property['type'] ?? 'string',
+                                                'format' => $property['format'] ?? '',
                                                 'example' => $property['example'],
                                                 'description' => $property['description'] ?? '',
-                                                'format' => $property['format'] ?? '',
                                             ];
                                         }
 
@@ -212,7 +213,7 @@ class OpenAPIOperation
                                 'type' => 'string'
                             ],
                             'required' => true,
-                            'example' => ''
+                            'example' => '',
                         ];
                     }
 
@@ -221,9 +222,10 @@ class OpenAPIOperation
                             'name' => $param['name'],
                             'in' => 'query',
                             'schema' => [
-                                'type' => 'string'
+                                'type' => $param['type'] ?? 'string'
                             ],
-                            'example' => $param['example']
+                            'example' => $param['example'] ?? '',
+                            'description' => $param['description'] ?? '',
                         ];
                     }
 
