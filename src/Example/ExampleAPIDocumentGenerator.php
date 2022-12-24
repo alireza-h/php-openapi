@@ -45,9 +45,7 @@ class ExampleAPIDocumentGenerator
         ],
         'security' => [
             [
-                [
-                    'bearerAuth' => []
-                ]
+                'bearerAuth' => []
             ]
         ],
         'tags' => [],
