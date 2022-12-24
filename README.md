@@ -26,4 +26,4 @@
     ```
   
 - Check `src/Example` directory and create your own `OpenAPIOperationGenerator` and `OpenAPIDocumentGenerator`
-- Create your custom route for Open API json document and swagger UI
+- Create your own custom route to serve Open API json document and swagger UI
