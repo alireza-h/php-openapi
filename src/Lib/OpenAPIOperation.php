@@ -91,6 +91,10 @@ class OpenAPIOperation
         return $this;
     }
 
+    /**
+     * @param string|array $description use array and \n for multiline description
+     * @return $this
+     */
     public function description($description): self
     {
         $this->description = implode('', (array)$description);
