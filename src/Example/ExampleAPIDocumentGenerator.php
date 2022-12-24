@@ -29,7 +29,7 @@ class ExampleAPIDocumentGenerator
                         'default' => 'localhost:8000'
                     ],
                     'base_path' => [
-                        'default' => 'ats-api'
+                        'default' => 'api'
                     ],
                 ]
             ]
