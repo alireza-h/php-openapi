@@ -2,12 +2,13 @@
 
 namespace AlirezaH\OpenApiGenerator\Example;
 
-use AlirezaH\OpenApiGenerator\Example\EndpointGenerator\ExampleApiAuthOpenAPIEndpointGenerator;
+use AlirezaH\OpenApiGenerator\Example\OperationGenerator\ExampleApiAuthOpenAPIOperationGenerator;
 use AlirezaH\OpenApiGenerator\Lib\OpenAPIDocumentGenerator;
 
 class ExampleAPIDocumentGenerator
 {
     private const OPEN_API_CONFIG = [
+        'openapi' => '3.0.0',
         'info' => [
             'title' => 'Example API',
             'description' => 'Example API',
@@ -28,22 +29,40 @@ class ExampleAPIDocumentGenerator
                         'default' => 'localhost:8000'
                     ],
                     'base_path' => [
-                        'default' => 'api'
+                        'default' => 'ats-api'
                     ],
                 ]
             ]
-        ]
+        ],
+        'components' => [
+            'securitySchemes' => [
+                'bearerAuth' => [
+                    'type' => 'http',
+                    'scheme' => 'bearer',
+                    'bearerFormat' => 'JWT',
+                ]
+            ]
+        ],
+        'security' => [
+            [
+                [
+                    'bearerAuth' => []
+                ]
+            ]
+        ],
+        'tags' => [],
+        'externalDocs' => []
     ];
 
-    private const OPEN_API_ENDPOINT_GENERATORS = [
-        ExampleApiAuthOpenAPIEndpointGenerator::class,
+    private const OPEN_API_OPERATION_GENERATORS = [
+        ExampleApiAuthOpenAPIOperationGenerator::class,
     ];
 
     public function docs(): string
     {
         return (new OpenAPIDocumentGenerator(
             self::OPEN_API_CONFIG,
-            self::OPEN_API_ENDPOINT_GENERATORS
+            self::OPEN_API_OPERATION_GENERATORS
         ))->docs();
     }
 }
