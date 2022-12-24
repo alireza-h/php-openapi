@@ -1,6 +1,6 @@
 <?php
 
-namespace AlirezaH\OpenApiGenerator\Lib;
+namespace AlirezaH\OpenApi\Lib;
 
 use ReflectionClass;
 use ReflectionMethod;

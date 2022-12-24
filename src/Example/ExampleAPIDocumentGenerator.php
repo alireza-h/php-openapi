@@ -1,9 +1,9 @@
 <?php
 
-namespace AlirezaH\OpenApiGenerator\Example;
+namespace AlirezaH\OpenApi\Example;
 
-use AlirezaH\OpenApiGenerator\Example\OperationGenerator\ExampleApiAuthOpenAPIOperationGenerator;
-use AlirezaH\OpenApiGenerator\Lib\OpenAPIDocumentGenerator;
+use AlirezaH\OpenApi\Example\OperationGenerator\ExampleApiAuthOpenAPIOperationGenerator;
+use AlirezaH\OpenApi\Lib\OpenAPIDocumentGenerator;
 
 class ExampleAPIDocumentGenerator
 {

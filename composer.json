@@ -1,5 +1,5 @@
 {
-    "name": "alireza-h/php-open-api-generator",
+    "name": "alireza-h/php-openapi",
     "description": "PHP Open Api Generator",
     "type": "library",
     "license": "MIT",
@@ -9,7 +9,7 @@
             "email": "alireza.hoseinzadeh89@gmail.com"
         }
     ],
-    "homepage": "https://github.com/alireza-h/php-open-api-generator",
+    "homepage": "https://github.com/alireza-h/php-openapi",
     "require": {
         "php": "^7.4|^8.0",
         "fzaninotto/faker": "~1.9",
@@ -17,7 +17,7 @@
     },
     "autoload": {
         "psr-4": {
-            "AlirezaH\\OpenApiGenerator\\": "src/"
+            "AlirezaH\\OpenApi\\": "src/"
         }
     }
 }

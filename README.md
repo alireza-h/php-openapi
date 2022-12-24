@@ -1,1 +1,1 @@
-# PHP OpenAPI Generator
+# PHP OpenAPI

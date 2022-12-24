@@ -1,10 +1,10 @@
 <?php
 
-namespace AlirezaH\OpenApiGenerator\Example\OperationGenerator;
+namespace AlirezaH\OpenApi\Example\OperationGenerator;
 
 
-use AlirezaH\OpenApiGenerator\Lib\OpenAPIOperation;
-use AlirezaH\OpenApiGenerator\Lib\OpenAPIOperationGenerator;
+use AlirezaH\OpenApi\Lib\OpenAPIOperation;
+use AlirezaH\OpenApi\Lib\OpenAPIOperationGenerator;
 
 class ExampleApiAuthOpenAPIOperationGenerator extends OpenAPIOperationGenerator
 {

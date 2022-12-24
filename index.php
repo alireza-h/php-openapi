@@ -1,6 +1,6 @@
 <?php
 
-use AlirezaH\OpenApiGenerator\Example\ExampleAPIDocumentGenerator;
+use AlirezaH\OpenApi\Example\ExampleAPIDocumentGenerator;
 
 require __DIR__ . '/vendor/autoload.php';
 
