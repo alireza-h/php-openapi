@@ -23,11 +23,15 @@ class ExampleApiAuthOpenAPIOperationGenerator extends OpenAPIOperationGenerator
                     ],
                     [
                         'name' => 'password',
+                        'type' => 'string',
+                        'format' => 'password',
                         'example' => $password = $this->faker->password,
                         'description' => 'Password',
                     ],
                     [
                         'name' => 'password_confirmation',
+                        'type' => 'string',
+                        'format' => 'password',
                         'example' => $password,
                         'description' => 'Password',
                     ],
@@ -83,6 +87,8 @@ class ExampleApiAuthOpenAPIOperationGenerator extends OpenAPIOperationGenerator
                     ],
                     [
                         'name' => 'password',
+                        'type' => 'string',
+                        'format' => 'password',
                         'example' => $this->faker->password,
                     ]
                 ]
