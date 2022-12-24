@@ -2,67 +2,94 @@
 
 namespace AlirezaH\OpenApiGenerator\Lib;
 
-class OpenAPIEndpoint
+class OpenAPIOperation
 {
-    private array $data = [];
+    private string $path;
+    private string $method;
+    private array $tags = [];
+    private string $summary = '';
+    private string $description = '';
+    private array $params = [];
+    private array $formData = [];
+    private array $responses = [];
 
-    public static function of(string $path): self
+    public static function request(string $method, string $path): self
     {
         $self = new static();
-        $self->data['path'] = $path;
+
+        $self->method = $method;
+        $self->path = $path;
 
         return $self;
     }
 
-    public function serialize(): array
+    public static function head(string $path): self
     {
-        return array_filter($this->format());
+        return static::request('head', $path);
     }
 
-    public function method(string $method): self
+    public static function get(string $path): self
     {
-        $this->data['method'] = $method;
-
-        return $this;
+        return static::request('get', $path);
     }
 
-    public function get(): self
+    public static function post(string $path): self
     {
-        return $this->method('get');
+        return static::request('post', $path);
     }
 
-    public function post(): self
+    public static function put(string $path): self
     {
-        return $this->method('post');
+        return static::request('put', $path);
     }
 
-    public function put(): self
+    public static function patch(string $path): self
     {
-        return $this->method('put');
+        return static::request('patch', $path);
     }
 
-    public function delete(): self
+    public static function delete(string $path): self
     {
-        return $this->method('delete');
+        return static::request('delete', $path);
+    }
+
+    public static function purge(string $path): self
+    {
+        return static::request('purge', $path);
+    }
+
+    public static function options(string $path): self
+    {
+        return static::request('options', $path);
+    }
+
+    public static function trace(string $path): self
+    {
+        return static::request('trace', $path);
+    }
+
+    public static function connect(string $path): self
+    {
+        return static::request('connect', $path);
     }
 
     public function tags(array $tags): self
     {
-        $this->data['tags'] = $tags;
+        $this->tags = $tags;
 
         return $this;
     }
 
     public function summary(string $summary): self
     {
-        $this->data['summary'] = $summary;
+        $this->summary = $summary;
 
         return $this;
     }
 
     public function description($description): self
     {
-        $this->data['description'] = implode('', (array)$description);
+        $this->description = implode('', (array)$description);
 
         return $this;
     }
@@ -80,7 +107,7 @@ class OpenAPIEndpoint
      */
     public function params(array $params): self
     {
-        $this->data['params'] = $params;
+        $this->params = $params;
 
         return $this;
     }
@@ -98,29 +125,47 @@ class OpenAPIEndpoint
      */
     public function formData(array $formData): self
     {
-        $this->data['form_data'] = $formData;
+        $this->formData = $formData;
 
         return $this;
     }
 
-    public function response(array $example, int $status = 200): self
-    {
-        $this->data['responses'][$status] = $example;
+    public function response(
+        array $example,
+        int $status = 200,
+        string $contentType = 'application/json',
+        string $description = ''
+    ): self {
+        $this->responses[(string)$status]['description'] = $description;
+        $this->responses[(string)$status]['content'][$contentType]['schema']['example'] = $example;
 
         return $this;
+    }
+
+    public function getPath(): string
+    {
+        return $this->path;
+    }
+
+    public function getMethod(): string
+    {
+        return $this->method;
+    }
+
+    public function serialize(): array
+    {
+        return array_filter($this->format());
     }
 
     private function format(): array
     {
         return array_filter(
             [
-                'path' => $this->data['path'],
-                'method' => $this->data['method'] ?? 'get',
-                'tags' => $this->data['tags'] ?? [],
-                'summary' => $this->data['summary'] ?? '',
-                'description' => $this->data['description'] ?? '',
+                'tags' => $this->tags,
+                'summary' => $this->summary,
+                'description' => $this->description,
                 'requestBody' => (function () {
-                    if (empty($this->data['form_data'])) {
+                    if (empty($this->formData)) {
                         return null;
                     }
 
@@ -128,13 +173,13 @@ class OpenAPIEndpoint
                         'description' => '',
                         'required' => true,
                         'content' => [
-                            in_array($this->data['method'], ['put', 'delete']) ?
+                            in_array($this->method, ['put', 'delete']) ?
                                 'application/x-www-form-urlencoded' : 'multipart/form-data' => $requestBody = [
                                 'schema' => [
                                     'type' => 'object',
                                     'properties' => (function () {
                                         $properties = [];
-                                        foreach ($this->data['form_data'] as $property) {
+                                        foreach ($this->formData as $property) {
                                             $properties[$property['name']] = [
                                                 'type' => $property['type'] ?? 'string',
                                                 'example' => $property['example'],
@@ -154,7 +199,7 @@ class OpenAPIEndpoint
                 'parameters' => (function () {
                     $parameters = [];
 
-                    preg_match_all('/({[a-z_?]+})/', $this->data['path'], $urlParams);
+                    preg_match_all('/({[a-z_?]+})/', $this->path, $urlParams);
                     foreach ($urlParams[0] ?: [] as $urlParam) {
                         $parameters[] = [
                             'name' => str_replace(['{', '}'], '', $urlParam),
@@ -167,7 +212,7 @@ class OpenAPIEndpoint
                         ];
                     }
 
-                    foreach ($this->data['params'] ?? [] as $param) {
+                    foreach ($this->params as $param) {
                         $parameters[] = [
                             'name' => $param['name'],
                             'in' => 'query',
@@ -180,24 +225,7 @@ class OpenAPIEndpoint
 
                     return $parameters;
                 })(),
-                'responses' => (function () {
-                    $responses = [];
-                    foreach ($this->data['responses'] ?? [] as $status => $response) {
-                        $responses[(string)$status] = [
-                            'description' => (string)$status,
-                            'content' => [
-                                'application/json' => [
-                                    'schema' => [
-                                        'example' => $response
-                                    ]
-                                ]
-                            ],
-
-                        ];
-                    }
-
-                    return $responses;
-                })(),
+                'responses' => $this->responses,
             ]
         );
     }

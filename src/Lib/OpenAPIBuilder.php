@@ -41,7 +41,7 @@ class OpenAPIBuilder
         return $self;
     }
 
-    public function endpoint(OpenAPIEndpoint $endpoint): self
+    public function endpoint(OpenAPIOperation $endpoint): self
     {
         $this->endpoints[] = $endpoint;
 
@@ -51,11 +51,7 @@ class OpenAPIBuilder
     public function docs(): string
     {
         foreach ($this->endpoints as $endpoint) {
-            $endpointData = $endpoint->serialize();
-            $path = $endpointData['path'];
-            $method = $endpointData['method'];
-            unset($endpointData['path'], $endpointData['method']);
-            $this->docs['paths'][$path][$method] = $endpointData;
+            $this->docs['paths'][$endpoint->getPath()][$endpoint->getMethod()] = $endpoint->serialize();
         }
 
         return json_encode($this->docs, JSON_PRETTY_PRINT);

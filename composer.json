@@ -12,7 +12,8 @@
     "homepage": "https://github.com/alireza-h/php-open-api-generator",
     "require": {
         "php": "^7.4|^8.0",
-        "fzaninotto/faker": "~1.9"
+        "fzaninotto/faker": "~1.9",
+        "ext-json": "*"
     },
     "autoload": {
         "psr-4": {

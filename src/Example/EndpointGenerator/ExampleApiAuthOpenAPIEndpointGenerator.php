@@ -3,18 +3,17 @@
 namespace AlirezaH\OpenApiGenerator\Example\EndpointGenerator;
 
 
-use AlirezaH\OpenApiGenerator\Lib\OpenAPIEndpoint;
+use AlirezaH\OpenApiGenerator\Lib\OpenAPIOperation;
 use AlirezaH\OpenApiGenerator\Lib\OpenAPIEndpointGenerator;
 
 class ExampleApiAuthOpenAPIEndpointGenerator extends OpenAPIEndpointGenerator
 {
-    public function signup(): OpenAPIEndpoint
+    public function signup(): OpenAPIOperation
     {
-        return OpenAPIEndpoint::of('/auth/signup')
+        return OpenAPIOperation::post('/auth/signup')
             ->tags(['Auth'])
             ->summary('Signup')
             ->description('Signup description')
-            ->post()
             ->formData(
                 [
                     [
@@ -42,13 +41,12 @@ class ExampleApiAuthOpenAPIEndpointGenerator extends OpenAPIEndpointGenerator
             );
     }
 
-    public function confirm(): OpenAPIEndpoint
+    public function confirm(): OpenAPIOperation
     {
-        return OpenAPIEndpoint::of('/auth/confirm')
+        return OpenAPIOperation::put('/auth/confirm')
             ->tags(['Auth'])
             ->summary('ConfirmSignup')
             ->description('Confirm signup description')
-            ->put()
             ->formData(
                 [
                     [
@@ -70,13 +68,12 @@ class ExampleApiAuthOpenAPIEndpointGenerator extends OpenAPIEndpointGenerator
             );
     }
 
-    public function signin(): OpenAPIEndpoint
+    public function signin(): OpenAPIOperation
     {
-        return OpenAPIEndpoint::of('/auth/signin')
+        return OpenAPIOperation::post('/auth/signin')
             ->tags(['Auth'])
             ->summary('Signin')
             ->description('Signin description')
-            ->post()
             ->formData(
                 [
                     [
@@ -99,12 +96,11 @@ class ExampleApiAuthOpenAPIEndpointGenerator extends OpenAPIEndpointGenerator
             );
     }
 
-    public function signout(): OpenAPIEndpoint
+    public function signout(): OpenAPIOperation
     {
-        return OpenAPIEndpoint::of('/auth/signout')
+        return OpenAPIOperation::post('/auth/signout')
             ->tags(['Auth'])
             ->summary('Signout')
-            ->description('Signout description')
-            ->post();
+            ->description('Signout description');
     }
 }
