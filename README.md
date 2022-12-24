@@ -1,5 +1,10 @@
 # PHP OpenAPI
 
+![Open API JSON Preview](./resources/images/screenshots/openapi-json.png)
+
+![Open API Swagger UI Preview](./resources/images/screenshots/openapi-swagger-ui.png)
+
+
 ## Installation
 
 ### Standalone
