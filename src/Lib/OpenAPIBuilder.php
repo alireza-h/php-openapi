@@ -17,7 +17,6 @@ class OpenAPIBuilder
 
         $self->docs = [
             'openapi' => $openapi,
-            'paths' => []
         ];
 
         return $self;
@@ -85,6 +84,7 @@ class OpenAPIBuilder
 
     public function docs(): string
     {
+        $this->docs['paths'] = [];
         foreach ($this->operations as $operation) {
             $this->docs['paths'][$operation->getPath()][$operation->getMethod()] = $operation->serialize();
         }
