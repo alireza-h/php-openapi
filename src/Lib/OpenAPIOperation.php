@@ -11,7 +11,7 @@ class OpenAPIOperation
     private string $description = '';
     private array $headers = [];
     private array $params = [];
-    private array $formData = [];
+    private array $requestBody = [];
     private array $responses = [];
 
     private function __construct()
@@ -140,7 +140,7 @@ class OpenAPIOperation
     }
 
     /**
-     * @param array $formData = [
+     * @param array $requestBody = [
      *  index => [
      *      'name' => 'name',
      *      'type' => 'string',
@@ -151,9 +151,9 @@ class OpenAPIOperation
      * ]
      * @return $this
      */
-    public function formData(array $formData): self
+    public function requestBody(array $requestBody): self
     {
-        $this->formData = $formData;
+        $this->requestBody = $requestBody;
 
         return $this;
     }
@@ -193,7 +193,7 @@ class OpenAPIOperation
                 'summary' => $this->summary,
                 'description' => $this->description,
                 'requestBody' => (function () {
-                    if (empty($this->formData)) {
+                    if (empty($this->requestBody)) {
                         return null;
                     }
 
@@ -207,7 +207,7 @@ class OpenAPIOperation
                                     'type' => 'object',
                                     'properties' => (function () {
                                         $properties = [];
-                                        foreach ($this->formData as $property) {
+                                        foreach ($this->requestBody as $property) {
                                             $properties[$property['name']] = [
                                                 'type' => $property['type'] ?? 'string',
                                                 'format' => $property['format'] ?? '',

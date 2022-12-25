@@ -14,7 +14,7 @@ class ExampleApiAuthOpenAPIOperationGenerator extends OpenAPIOperationGenerator
             ->tags(['Auth'])
             ->summary('Signup')
             ->description('Signup description')
-            ->formData(
+            ->requestBody(
                 [
                     [
                         'name' => 'email',
@@ -51,7 +51,7 @@ class ExampleApiAuthOpenAPIOperationGenerator extends OpenAPIOperationGenerator
             ->tags(['Auth'])
             ->summary('ConfirmSignup')
             ->description('Confirm signup description')
-            ->formData(
+            ->requestBody(
                 [
                     [
                         'name' => 'email',
@@ -78,7 +78,7 @@ class ExampleApiAuthOpenAPIOperationGenerator extends OpenAPIOperationGenerator
             ->tags(['Auth'])
             ->summary('Signin')
             ->description('Signin description')
-            ->formData(
+            ->requestBody(
                 [
                     [
                         'name' => 'email',
