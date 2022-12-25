@@ -211,7 +211,7 @@ class OpenAPIOperation
                                             $properties[$property['name']] = [
                                                 'type' => $property['type'] ?? 'string',
                                                 'format' => $property['format'] ?? '',
-                                                'example' => $property['example'],
+                                                'example' => $property['example'] ?? '',
                                                 'description' => $property['description'] ?? '',
                                             ];
                                         }
