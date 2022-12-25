@@ -18,6 +18,8 @@ class ExampleApiAuthOpenAPIOperationGenerator extends OpenAPIOperationGenerator
                 [
                     [
                         'name' => 'email',
+                        'type' => 'string',
+                        'format' => 'email',
                         'example' => $this->faker->email,
                         'description' => 'Email',
                     ],
@@ -55,6 +57,8 @@ class ExampleApiAuthOpenAPIOperationGenerator extends OpenAPIOperationGenerator
                 [
                     [
                         'name' => 'email',
+                        'type' => 'string',
+                        'format' => 'email',
                         'example' => $this->faker->email,
                         'description' => 'Email',
                     ],
@@ -82,6 +86,8 @@ class ExampleApiAuthOpenAPIOperationGenerator extends OpenAPIOperationGenerator
                 [
                     [
                         'name' => 'email',
+                        'type' => 'string',
+                        'format' => 'email',
                         'example' => $this->faker->email,
                         'description' => 'Email',
                     ],
