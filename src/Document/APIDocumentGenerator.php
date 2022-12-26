@@ -1,17 +1,17 @@
 <?php
 
-namespace AlirezaH\OpenApi\Example;
+namespace AlirezaH\OpenApi\Document;
 
-use AlirezaH\OpenApi\Example\OperationGenerator\ExampleApiAuthOpenAPIOperationGenerator;
+use AlirezaH\OpenApi\Document\OperationGenerator\AuthOpenAPIOperationGenerator;
 use AlirezaH\OpenApi\Lib\OpenAPIDocumentGenerator;
 
-class ExampleAPIDocumentGenerator
+class APIDocumentGenerator
 {
     private const OPEN_API_CONFIG = [
         'openapi' => '3.0.0',
         'info' => [
-            'title' => 'Example API',
-            'description' => 'Example API',
+            'title' => 'API',
+            'description' => 'API',
             'version' => '1.0.0'
         ],
         'servers' => [
@@ -49,11 +49,11 @@ class ExampleAPIDocumentGenerator
             ]
         ],
         'tags' => [],
-        'externalDocs' => []
+        'externalDocument' => []
     ];
 
     private const OPEN_API_OPERATION_GENERATORS = [
-        ExampleApiAuthOpenAPIOperationGenerator::class,
+        AuthOpenAPIOperationGenerator::class,
     ];
 
     public function docs(): string

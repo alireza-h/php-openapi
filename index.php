@@ -1,6 +1,6 @@
 <?php
 
-use AlirezaH\OpenApi\Example\ExampleAPIDocumentGenerator;
+use AlirezaH\OpenApi\Document\APIDocumentGenerator;
 
 require __DIR__ . '/vendor/autoload.php';
 
@@ -12,6 +12,6 @@ if (isset($_GET['swagger'])) {
 
 header('Content-Type: application/json; charset=utf-8');
 
-echo (new ExampleAPIDocumentGenerator())->docs();
+echo (new APIDocumentGenerator())->docs();
 
 die();

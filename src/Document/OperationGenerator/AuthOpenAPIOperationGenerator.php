@@ -1,13 +1,12 @@
 <?php
 
-namespace AlirezaH\OpenApi\Example\OperationGenerator;
-
+namespace AlirezaH\OpenApi\Document\OperationGenerator;
 
 use AlirezaH\OpenApi\Lib\OpenAPIOperation;
 use AlirezaH\OpenApi\Lib\OpenAPIOperationGenerator;
 use AlirezaH\OpenApi\Lib\OpenAPIRequestBody;
 
-class ExampleApiAuthOpenAPIOperationGenerator extends OpenAPIOperationGenerator
+class AuthOpenAPIOperationGenerator extends OpenAPIOperationGenerator
 {
     public function signup(): OpenAPIOperation
     {
