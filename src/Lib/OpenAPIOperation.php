@@ -11,7 +11,7 @@ class OpenAPIOperation
     private string $description = '';
     private array $headers = [];
     private array $params = [];
-    private array $requestBody = [];
+    private ?OpenAPIRequestBody $requestBody = null;
     private array $responses = [];
 
     private function __construct()
@@ -139,19 +139,7 @@ class OpenAPIOperation
         return $this;
     }
 
-    /**
-     * @param array $requestBody = [
-     *  index => [
-     *      'name' => 'name',
-     *      'type' => 'string',
-     *      'format' => '',
-     *      'example' => '',
-     *      'description' => '',
-     *  ]
-     * ]
-     * @return $this
-     */
-    public function requestBody(array $requestBody): self
+    public function requestBody(OpenAPIRequestBody $requestBody): self
     {
         $this->requestBody = $requestBody;
 
@@ -192,38 +180,7 @@ class OpenAPIOperation
                 'tags' => $this->tags,
                 'summary' => $this->summary,
                 'description' => $this->description,
-                'requestBody' => (function () {
-                    if (empty($this->requestBody)) {
-                        return null;
-                    }
-
-                    return [
-                        'description' => '',
-                        'required' => true,
-                        'content' => [
-                            in_array($this->method, ['put', 'delete']) ?
-                                'application/x-www-form-urlencoded' : 'multipart/form-data' => $requestBody = [
-                                'schema' => [
-                                    'type' => 'object',
-                                    'properties' => (function () {
-                                        $properties = [];
-                                        foreach ($this->requestBody as $property) {
-                                            $properties[$property['name']] = [
-                                                'type' => $property['type'] ?? 'string',
-                                                'format' => $property['format'] ?? '',
-                                                'example' => $property['example'] ?? '',
-                                                'description' => $property['description'] ?? '',
-                                            ];
-                                        }
-
-                                        return $properties;
-                                    })()
-                                ]
-                            ],
-                            'application/json' => $requestBody
-                        ]
-                    ];
-                })(),
+                'requestBody' => $this->requestBody !== null ? $this->requestBody->serialize() : null,
                 'parameters' => (function () {
                     $parameters = [];
 

@@ -5,6 +5,7 @@ namespace AlirezaH\OpenApi\Example\OperationGenerator;
 
 use AlirezaH\OpenApi\Lib\OpenAPIOperation;
 use AlirezaH\OpenApi\Lib\OpenAPIOperationGenerator;
+use AlirezaH\OpenApi\Lib\OpenAPIRequestBody;
 
 class ExampleApiAuthOpenAPIOperationGenerator extends OpenAPIOperationGenerator
 {
@@ -15,29 +16,33 @@ class ExampleApiAuthOpenAPIOperationGenerator extends OpenAPIOperationGenerator
             ->summary('Signup')
             ->description('Signup description')
             ->requestBody(
-                [
-                    [
-                        'name' => 'email',
-                        'type' => 'string',
-                        'format' => 'email',
-                        'example' => $this->faker->email,
-                        'description' => 'Email',
-                    ],
-                    [
-                        'name' => 'password',
-                        'type' => 'string',
-                        'format' => 'password',
-                        'example' => $password = $this->faker->password,
-                        'description' => 'Password',
-                    ],
-                    [
-                        'name' => 'password_confirmation',
-                        'type' => 'string',
-                        'format' => 'password',
-                        'example' => $password,
-                        'description' => 'Password',
-                    ],
-                ]
+                OpenAPIRequestBody::create()
+                    ->properties(
+                        [
+                            [
+                                'name' => 'email',
+                                'type' => 'string',
+                                'format' => 'email',
+                                'example' => $this->faker->email,
+                                'description' => 'Email',
+                            ],
+                            [
+                                'name' => 'password',
+                                'type' => 'string',
+                                'format' => 'password',
+                                'example' => $password = $this->faker->password,
+                                'description' => 'Password',
+                            ],
+                            [
+                                'name' => 'password_confirmation',
+                                'type' => 'string',
+                                'format' => 'password',
+                                'example' => $password,
+                                'description' => 'Password',
+                            ],
+                        ]
+                    )
+                    ->mediaTypeMultipartFormData()
             )
             ->response(
                 [
@@ -54,19 +59,23 @@ class ExampleApiAuthOpenAPIOperationGenerator extends OpenAPIOperationGenerator
             ->summary('ConfirmSignup')
             ->description('Confirm signup description')
             ->requestBody(
-                [
-                    [
-                        'name' => 'email',
-                        'type' => 'string',
-                        'format' => 'email',
-                        'example' => $this->faker->email,
-                        'description' => 'Email',
-                    ],
-                    [
-                        'name' => 'code',
-                        'example' => $this->faker->randomNumber(),
-                    ]
-                ]
+                OpenAPIRequestBody::create()
+                    ->properties(
+                        [
+                            [
+                                'name' => 'email',
+                                'type' => 'string',
+                                'format' => 'email',
+                                'example' => $this->faker->email,
+                                'description' => 'Email',
+                            ],
+                            [
+                                'name' => 'code',
+                                'example' => $this->faker->randomNumber(),
+                            ]
+                        ]
+                    )
+                    ->mediaTypeXWwwFormUrlencoded()
             )
             ->response(
                 [
@@ -83,21 +92,25 @@ class ExampleApiAuthOpenAPIOperationGenerator extends OpenAPIOperationGenerator
             ->summary('Signin')
             ->description('Signin description')
             ->requestBody(
-                [
-                    [
-                        'name' => 'email',
-                        'type' => 'string',
-                        'format' => 'email',
-                        'example' => $this->faker->email,
-                        'description' => 'Email',
-                    ],
-                    [
-                        'name' => 'password',
-                        'type' => 'string',
-                        'format' => 'password',
-                        'example' => $this->faker->password,
-                    ]
-                ]
+                OpenAPIRequestBody::create()
+                    ->properties(
+                        [
+                            [
+                                'name' => 'email',
+                                'type' => 'string',
+                                'format' => 'email',
+                                'example' => $this->faker->email,
+                                'description' => 'Email',
+                            ],
+                            [
+                                'name' => 'password',
+                                'type' => 'string',
+                                'format' => 'password',
+                                'example' => $this->faker->password,
+                            ]
+                        ]
+                    )
+                    ->mediaTypeMultipartFormData()
             )
             ->response(
                 [
