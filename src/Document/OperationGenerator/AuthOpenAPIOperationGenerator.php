@@ -5,6 +5,7 @@ namespace AlirezaH\OpenApi\Document\OperationGenerator;
 use AlirezaH\OpenApi\Lib\OpenAPIOperation;
 use AlirezaH\OpenApi\Lib\OpenAPIOperationGenerator;
 use AlirezaH\OpenApi\Lib\OpenAPIRequestBody;
+use AlirezaH\OpenApi\Lib\OpenAPIResponse;
 
 class AuthOpenAPIOperationGenerator extends OpenAPIOperationGenerator
 {
@@ -44,10 +45,14 @@ class AuthOpenAPIOperationGenerator extends OpenAPIOperationGenerator
                     ->mediaTypeMultipartFormData()
             )
             ->response(
-                [
-                    'data' => [],
-                    'message' => null
-                ]
+                OpenAPIResponse::create()
+                    ->example(
+                        'application/json',
+                        [
+                            'data' => [],
+                            'message' => null
+                        ]
+                    )
             );
     }
 
@@ -77,10 +82,14 @@ class AuthOpenAPIOperationGenerator extends OpenAPIOperationGenerator
                     ->mediaTypeXWwwFormUrlencoded()
             )
             ->response(
-                [
-                    'data' => [],
-                    'message' => null
-                ]
+                OpenAPIResponse::create()
+                    ->example(
+                        'application/json',
+                        [
+                            'data' => [],
+                            'message' => null
+                        ]
+                    )
             );
     }
 
@@ -112,11 +121,34 @@ class AuthOpenAPIOperationGenerator extends OpenAPIOperationGenerator
                     ->mediaTypeMultipartFormData()
             )
             ->response(
-                [
-                    'accessToken' => '_token',
-                    'tokenType' => 'bearer',
-                    'expiresIn' => 3600
-                ]
+                OpenAPIResponse::create()
+                    ->description('Success Signin')
+                    ->header('Content-Type', 'string', 'application/json')
+                    ->example(
+                        'application/json',
+                        [
+                            'accessToken' => '_token',
+                            'tokenType' => 'bearer',
+                            'expiresIn' => 3600
+                        ]
+                    )
+            )
+            ->response(
+                OpenAPIResponse::create()
+                    ->status(422)
+                    ->description('Invalid Credentials')
+                    ->header('Content-Type', 'string', 'application/json')
+                    ->example(
+                        'application/json',
+                        [
+                            'message' => 'The given data was invalid.',
+                            'errors' => [
+                                'email' => [
+                                    'Invalid credentials'
+                                ]
+                            ]
+                        ]
+                    )
             );
     }
 

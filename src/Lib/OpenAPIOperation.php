@@ -146,14 +146,9 @@ class OpenAPIOperation
         return $this;
     }
 
-    public function response(
-        array $example,
-        int $status = 200,
-        string $contentType = 'application/json',
-        string $description = ''
-    ): self {
-        $this->responses[(string)$status]['description'] = $description;
-        $this->responses[(string)$status]['content'][$contentType]['schema']['example'] = $example;
+    public function response(OpenAPIResponse $response): self
+    {
+        $this->responses[] = $response;
 
         return $this;
     }
@@ -223,7 +218,14 @@ class OpenAPIOperation
 
                     return $parameters;
                 })(),
-                'responses' => $this->responses,
+                'responses' => (function () {
+                    $responses = [];
+                    foreach ($this->responses as $response) {
+                        $responses[$response->getStatus()] = $response->serialize();
+                    }
+                    
+                    return $responses;
+                })(),
             ]
         );
     }
