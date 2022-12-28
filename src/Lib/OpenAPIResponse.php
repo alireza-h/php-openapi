@@ -50,8 +50,8 @@ class OpenAPIResponse
     }
 
     public function example(
-        string $mediaType,
         array $example,
+        string $mediaType = 'application/json',
         string $type = 'object'
     ): self {
         $this->examples[$mediaType] = [

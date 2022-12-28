@@ -47,7 +47,6 @@ class AuthOpenAPIOperationGenerator extends OpenAPIOperationGenerator
             ->response(
                 OpenAPIResponse::create()
                     ->example(
-                        'application/json',
                         [
                             'data' => [],
                             'message' => null
@@ -84,7 +83,6 @@ class AuthOpenAPIOperationGenerator extends OpenAPIOperationGenerator
             ->response(
                 OpenAPIResponse::create()
                     ->example(
-                        'application/json',
                         [
                             'data' => [],
                             'message' => null
@@ -125,7 +123,6 @@ class AuthOpenAPIOperationGenerator extends OpenAPIOperationGenerator
                     ->description('Success Signin')
                     ->header('Content-Type', 'string', 'application/json')
                     ->example(
-                        'application/json',
                         [
                             'accessToken' => '_token',
                             'tokenType' => 'bearer',
@@ -139,7 +136,6 @@ class AuthOpenAPIOperationGenerator extends OpenAPIOperationGenerator
                     ->description('Invalid Credentials')
                     ->header('Content-Type', 'string', 'application/json')
                     ->example(
-                        'application/json',
                         [
                             'message' => 'The given data was invalid.',
                             'errors' => [
