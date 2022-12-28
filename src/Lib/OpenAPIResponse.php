@@ -52,14 +52,10 @@ class OpenAPIResponse
     public function example(
         array $example,
         string $mediaType = 'application/json',
-        string $type = 'object'
+        array $schema = []
     ): self {
-        $this->examples[$mediaType] = [
-            'schema' => [
-                'type' => $type
-            ],
-            'example' => $example,
-        ];
+        !empty($schema) && $this->examples[$mediaType]['schema'] = $schema;
+        $this->examples[$mediaType]['example'] = $example;
 
         return $this;
     }

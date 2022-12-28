@@ -127,6 +127,24 @@ class AuthOpenAPIOperationGenerator extends OpenAPIOperationGenerator
                             'accessToken' => '_token',
                             'tokenType' => 'bearer',
                             'expiresIn' => 3600
+                        ],
+                        'application/json',
+                        [
+                            'type' => 'object',
+                            'properties' => [
+                                'accessToken' => [
+                                    'type' => 'string',
+                                    'description' => 'Access token',
+                                ],
+                                'tokenType' => [
+                                    'type' => 'string',
+                                    'description' => 'Token type, e.g. bearer',
+                                ],
+                                'expiresIn' => [
+                                    'type' => 'integer',
+                                    'description' => 'Token expiration time in seconds',
+                                ],
+                            ]
                         ]
                     )
             )
