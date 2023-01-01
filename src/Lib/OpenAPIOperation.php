@@ -223,8 +223,8 @@ class OpenAPIOperation
                     foreach ($this->responses as $response) {
                         $responses[$response->getStatus()] = $response->serialize();
                     }
-                    
-                    return $responses;
+
+                    return $responses ?: ['200' => []];
                 })(),
             ]
         );
