@@ -14,7 +14,7 @@ class OpenAPIBuilder
     {
     }
 
-    public static function openapi(string $openapi = '3.0.0'): OpenAPIBuilder
+    public static function openapi(string $openapi = '3.0.0'): self
     {
         $self = new static();
 
@@ -31,34 +31,34 @@ class OpenAPIBuilder
             'description' => '',
             'version' => '1.0.0',
         ]
-    ): OpenAPIBuilder {
+    ): self {
         $this->docs['info'] = $info;
 
         return $this;
     }
 
-    public function server(array $server): OpenAPIBuilder
+    public function server(array $server): self
     {
         $this->docs['servers'][] = $server;
 
         return $this;
     }
 
-    public function component(string $type, string $name, array $component): OpenAPIBuilder
+    public function component(string $type, string $name, array $component): self
     {
         $this->docs['components'][$type][$name] = $component;
 
         return $this;
     }
 
-    public function security(array $security): OpenAPIBuilder
+    public function security(array $security): self
     {
         $this->docs['security'][] = $security;
 
         return $this;
     }
 
-    public function tag(string $name, string $description = ''): OpenAPIBuilder
+    public function tag(string $name, string $description = ''): self
     {
         $this->docs['tags'][] = [
             'name' => $name,
@@ -68,7 +68,7 @@ class OpenAPIBuilder
         return $this;
     }
 
-    public function externalDocs(string $description, string $url): OpenAPIBuilder
+    public function externalDocs(string $description, string $url): self
     {
         $this->docs['externalDocs'][] = [
             'description' => $description,
