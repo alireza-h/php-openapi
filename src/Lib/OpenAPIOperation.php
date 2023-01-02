@@ -224,7 +224,14 @@ class OpenAPIOperation
                         $responses[$response->getStatus()] = $response->serialize();
                     }
 
-                    return $responses ?: ['200' => []];
+                    return $responses ?: [
+                        'default' => [
+                            'description' => 'Default response',
+                            'content' => [
+                                'application/json' => ['schema' => ['type' => 'object']]
+                            ]
+                        ]
+                    ];
                 })(),
             ]
         );
