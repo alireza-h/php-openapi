@@ -69,8 +69,8 @@ class OpenAPIResponse
     {
         return [
             'description' => $this->description,
-            'headers' => $this->headers,
-            'content' => $this->examples
+            'headers' => $this->headers ?: (object)[],
+            'content' => $this->examples ?: (object)[]
         ];
     }
 }
