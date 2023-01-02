@@ -5,6 +5,9 @@ namespace AlirezaH\OpenApi\Lib;
 class OpenAPIBuilder
 {
     private array $docs = [];
+    /**
+     * @var OpenAPIOperation[]
+     */
     private array $operations = [];
 
     private function __construct()
