@@ -5,7 +5,7 @@ namespace AlirezaH\OpenApi\Lib;
 use ReflectionClass;
 use ReflectionMethod;
 
-class OpenAPIDocumentGenerator
+class OpenApiDocumentGenerator
 {
     private array $config;
     private array $openApiOperationGenerators;
@@ -65,7 +65,7 @@ class OpenAPIDocumentGenerator
     /** @noinspection PhpUnhandledExceptionInspection */
     public function docs(): string
     {
-        $openApiBuilder = OpenAPIBuilder::openapi($this->config['openapi'])
+        $openApiBuilder = OpenApiBuilder::openapi($this->config['openapi'])
             ->info($this->config['info']);
 
         foreach ($this->config['servers'] ?? [] as $server) {

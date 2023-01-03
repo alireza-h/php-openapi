@@ -2,11 +2,11 @@
 
 namespace AlirezaH\OpenApi\Lib;
 
-class OpenAPIBuilder
+class OpenApiBuilder
 {
     private array $docs = [];
     /**
-     * @var OpenAPIOperation[]
+     * @var OpenApiOperation[]
      */
     private array $operations = [];
 
@@ -78,7 +78,7 @@ class OpenAPIBuilder
         return $this;
     }
 
-    public function operation(OpenAPIOperation $operation): self
+    public function operation(OpenApiOperation $operation): self
     {
         $this->operations[] = $operation;
 

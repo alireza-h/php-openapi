@@ -2,10 +2,10 @@
 
 namespace AlirezaH\OpenApi\Document;
 
-use AlirezaH\OpenApi\Document\OperationGenerator\AuthOpenAPIOperationGenerator;
-use AlirezaH\OpenApi\Lib\OpenAPIDocumentGenerator;
+use AlirezaH\OpenApi\Document\OperationGenerator\AuthOpenApiOperationGenerator;
+use AlirezaH\OpenApi\Lib\OpenApiDocumentGenerator;
 
-class APIDocumentGenerator
+class ApiDocumentGenerator
 {
     private const OPEN_API_CONFIG = [
         'openapi' => '3.0.0',
@@ -53,12 +53,12 @@ class APIDocumentGenerator
     ];
 
     private const OPEN_API_OPERATION_GENERATORS = [
-        AuthOpenAPIOperationGenerator::class,
+        AuthOpenApiOperationGenerator::class,
     ];
 
     public function docs(): string
     {
-        return (new OpenAPIDocumentGenerator(
+        return (new OpenApiDocumentGenerator(
             self::OPEN_API_CONFIG,
             self::OPEN_API_OPERATION_GENERATORS
         ))->docs();

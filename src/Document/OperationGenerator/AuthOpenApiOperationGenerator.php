@@ -2,21 +2,21 @@
 
 namespace AlirezaH\OpenApi\Document\OperationGenerator;
 
-use AlirezaH\OpenApi\Lib\OpenAPIOperation;
-use AlirezaH\OpenApi\Lib\OpenAPIOperationGenerator;
-use AlirezaH\OpenApi\Lib\OpenAPIRequestBody;
-use AlirezaH\OpenApi\Lib\OpenAPIResponse;
+use AlirezaH\OpenApi\Lib\OpenApiOperation;
+use AlirezaH\OpenApi\Lib\OpenApiOperationGenerator;
+use AlirezaH\OpenApi\Lib\OpenApiRequestBody;
+use AlirezaH\OpenApi\Lib\OpenApiResponse;
 
-class AuthOpenAPIOperationGenerator extends OpenAPIOperationGenerator
+class AuthOpenApiOperationGenerator extends OpenApiOperationGenerator
 {
-    public function signup(): OpenAPIOperation
+    public function signup(): OpenApiOperation
     {
-        return OpenAPIOperation::post('/auth/signup')
+        return OpenApiOperation::post('/auth/signup')
             ->tags(['Auth'])
             ->summary('Signup')
             ->description('Signup description')
             ->requestBody(
-                OpenAPIRequestBody::create()
+                OpenApiRequestBody::create()
                     ->properties(
                         [
                             [
@@ -45,7 +45,7 @@ class AuthOpenAPIOperationGenerator extends OpenAPIOperationGenerator
                     ->mediaTypeMultipartFormData()
             )
             ->response(
-                OpenAPIResponse::create()
+                OpenApiResponse::create()
                     ->example(
                         [
                             'data' => [],
@@ -55,14 +55,14 @@ class AuthOpenAPIOperationGenerator extends OpenAPIOperationGenerator
             );
     }
 
-    public function confirm(): OpenAPIOperation
+    public function confirm(): OpenApiOperation
     {
-        return OpenAPIOperation::put('/auth/confirm')
+        return OpenApiOperation::put('/auth/confirm')
             ->tags(['Auth'])
             ->summary('ConfirmSignup')
             ->description('Confirm signup description')
             ->requestBody(
-                OpenAPIRequestBody::create()
+                OpenApiRequestBody::create()
                     ->properties(
                         [
                             [
@@ -81,7 +81,7 @@ class AuthOpenAPIOperationGenerator extends OpenAPIOperationGenerator
                     ->mediaTypeXWwwFormUrlencoded()
             )
             ->response(
-                OpenAPIResponse::create()
+                OpenApiResponse::create()
                     ->example(
                         [
                             'data' => [],
@@ -91,14 +91,14 @@ class AuthOpenAPIOperationGenerator extends OpenAPIOperationGenerator
             );
     }
 
-    public function signin(): OpenAPIOperation
+    public function signin(): OpenApiOperation
     {
-        return OpenAPIOperation::post('/auth/signin')
+        return OpenApiOperation::post('/auth/signin')
             ->tags(['Auth'])
             ->summary('Signin')
             ->description('Signin description')
             ->requestBody(
-                OpenAPIRequestBody::create()
+                OpenApiRequestBody::create()
                     ->properties(
                         [
                             [
@@ -119,7 +119,7 @@ class AuthOpenAPIOperationGenerator extends OpenAPIOperationGenerator
                     ->mediaTypeMultipartFormData()
             )
             ->response(
-                OpenAPIResponse::create()
+                OpenApiResponse::create()
                     ->description('Success Signin')
                     ->header('Content-Type', 'string', 'application/json')
                     ->example(
@@ -149,7 +149,7 @@ class AuthOpenAPIOperationGenerator extends OpenAPIOperationGenerator
                     )
             )
             ->response(
-                OpenAPIResponse::create()
+                OpenApiResponse::create()
                     ->status(422)
                     ->description('Invalid Credentials')
                     ->header('Content-Type', 'string', 'application/json')
@@ -166,9 +166,9 @@ class AuthOpenAPIOperationGenerator extends OpenAPIOperationGenerator
             );
     }
 
-    public function signout(): OpenAPIOperation
+    public function signout(): OpenApiOperation
     {
-        return OpenAPIOperation::post('/auth/signout')
+        return OpenApiOperation::post('/auth/signout')
             ->tags(['Auth'])
             ->summary('Signout')
             ->description('Signout description');

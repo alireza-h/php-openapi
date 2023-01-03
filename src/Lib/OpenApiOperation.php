@@ -2,7 +2,7 @@
 
 namespace AlirezaH\OpenApi\Lib;
 
-class OpenAPIOperation
+class OpenApiOperation
 {
     private string $path;
     private string $method;
@@ -11,7 +11,7 @@ class OpenAPIOperation
     private string $description = '';
     private array $headers = [];
     private array $params = [];
-    private ?OpenAPIRequestBody $requestBody = null;
+    private ?OpenApiRequestBody $requestBody = null;
     private array $responses = [];
 
     private function __construct()
@@ -139,14 +139,14 @@ class OpenAPIOperation
         return $this;
     }
 
-    public function requestBody(OpenAPIRequestBody $requestBody): self
+    public function requestBody(OpenApiRequestBody $requestBody): self
     {
         $this->requestBody = $requestBody;
 
         return $this;
     }
 
-    public function response(OpenAPIResponse $response): self
+    public function response(OpenApiResponse $response): self
     {
         $this->responses[] = $response;
 

@@ -11,10 +11,10 @@
 
 - Clone project
 - Run `composer update`
-- Check `src/Document` directory as sample and create your own `OpenAPIOperationGenerator` and `OpenAPIDocumentGenerator`
+- Check `src/Document` directory as sample and create your own `OpenApiOperationGenerator` and `OpenApiDocumentGenerator`
 
-  `OpenAPIOperationGenerator` is responsible to generate Open API Operations and `OpenAPIDocumentGenerator` is
-  responsible to generate Open API json document. Each public method of `OpenAPIOperationGenerator` generates one Open
+  `OpenApiOperationGenerator` is responsible to generate Open API Operations and `OpenApiDocumentGenerator` is
+  responsible to generate Open API json document. Each public method of `OpenApiOperationGenerator` generates one Open
   API Operation (Using reflection).
 
 - Run `php -S localhost:8001` in project root directory
@@ -30,14 +30,14 @@
     composer require alireza-h/php-openapi
     ```
 
-- Check `src/Document` directory as sample and create your own `OpenAPIOperationGenerator`
-  and `OpenAPIDocumentGenerator`
+- Check `src/Document` directory as sample and create your own `OpenApiOperationGenerator`
+  and `OpenApiDocumentGenerator`
 
-  Instead of using `OpenAPIDocumentGenerator`, you can create your own `OpenAPIBuilder` object and
-  add `OpenAPIOperation` to builder object.
+  Instead of using `OpenApiDocumentGenerator`, you can create your own `OpenApiBuilder` object and
+  add `OpenApiOperation` to builder object.
 
   ```
-  OpenAPIBuilder::openapi()
+  OpenApiBuilder::openapi()
       ->info(
           [
               'title' => 'API',
@@ -80,12 +80,12 @@
           ]
       )
       ->operation(
-          OpenAPIOperation::post('/auth/signup')
+          OpenApiOperation::post('/auth/signup')
               ->tags(['Auth'])
               ->summary('Signup')
               ->description('Signup description')
               ->requestBody(
-                  OpenAPIRequestBody::create()
+                  OpenApiRequestBody::create()
                       ->properties(
                           [
                               [
@@ -101,7 +101,7 @@
                       ->mediaTypeMultipartFormData()
               )
               ->response(
-                  OpenAPIResponse::create()
+                  OpenApiResponse::create()
                       ->example(
                           [
                               'data' => [],
@@ -111,12 +111,12 @@
               )
       )
       ->operation(
-          OpenAPIOperation::put('/auth/confirm')
+          OpenApiOperation::put('/auth/confirm')
               ->tags(['Auth'])
               ->summary('ConfirmSignup')
               ->description('Confirm signup description')
               ->requestBody(
-                  OpenAPIRequestBody::create()
+                  OpenApiRequestBody::create()
                       ->properties(
                           [
                               [
@@ -135,7 +135,7 @@
                       ->mediaTypeXWwwFormUrlencoded()
               )
               ->response(
-                  OpenAPIResponse::create()
+                  OpenApiResponse::create()
                       ->example(
                           [
                               'data' => [],

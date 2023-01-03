@@ -2,7 +2,7 @@
 
 namespace AlirezaH\OpenApi\Lib;
 
-class OpenAPIResponse
+class OpenApiResponse
 {
     private string $status = '200';
     private string $description = '';

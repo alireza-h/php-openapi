@@ -2,7 +2,7 @@
 
 namespace AlirezaH\OpenApi\Lib;
 
-class OpenAPIRequestBody
+class OpenApiRequestBody
 {
     private string $description = '';
     private bool $required = false;
