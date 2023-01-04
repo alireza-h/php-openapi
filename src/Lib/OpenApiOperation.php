@@ -9,6 +9,7 @@ class OpenApiOperation
     private array $tags = [];
     private string $summary = '';
     private string $description = '';
+    private string $operationId = '';
     private array $headers = [];
     private array $params = [];
     private ?OpenApiRequestBody $requestBody = null;
@@ -103,6 +104,13 @@ class OpenApiOperation
         return $this;
     }
 
+    public function operationId(string $operationId): self
+    {
+        $this->operationId = $operationId;
+
+        return $this;
+    }
+
     /**
      * @param array $headers = [
      *  index => [
@@ -175,6 +183,14 @@ class OpenApiOperation
                 'tags' => $this->tags,
                 'summary' => $this->summary,
                 'description' => $this->description,
+                'operationId' => $this->operationId ?:
+                    implode(
+                        '_',
+                        [
+                            $this->method,
+                            str_replace('/', '_', trim($this->path, '/'))
+                        ]
+                    ),
                 'requestBody' => $this->requestBody !== null ? $this->requestBody->serialize() : null,
                 'parameters' => (function () {
                     $parameters = [];
