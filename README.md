@@ -144,7 +144,7 @@
                       )
               )
       )
-      ->json();
+      ->docs();
   ```
 
 - Create your own custom route to serve Open API json document and swagger UI
