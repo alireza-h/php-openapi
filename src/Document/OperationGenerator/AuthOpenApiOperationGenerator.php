@@ -14,7 +14,17 @@ class AuthOpenApiOperationGenerator extends OpenApiOperationGenerator
         return OpenApiOperation::post('/auth/signup')
             ->tags(['Auth'])
             ->summary('Signup')
-            ->description('Signup description')
+            ->description(
+                [
+                    'Signup with defined email and password',
+                    PHP_EOL,
+                    PHP_EOL,
+                    'After signup you must confirm your email to get access to your account.',
+                    PHP_EOL,
+                    PHP_EOL,
+                    'See [/auth/confirm](#/Auth/confirm)'
+                ]
+            )
             ->requestBody(
                 OpenApiRequestBody::create()
                     ->properties(
@@ -61,6 +71,7 @@ class AuthOpenApiOperationGenerator extends OpenApiOperationGenerator
             ->tags(['Auth'])
             ->summary('ConfirmSignup')
             ->description('Confirm signup description')
+            ->operationId('confirm')
             ->requestBody(
                 OpenApiRequestBody::create()
                     ->properties(
