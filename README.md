@@ -36,7 +36,7 @@
   Instead of using `OpenApiDocumentGenerator`, you can create your own `OpenApiBuilder` object and
   add `OpenApiOperation` to builder object.
 
-  ```
+  ```php
   OpenApiBuilder::openapi()
       ->info(
           [
