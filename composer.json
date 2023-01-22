@@ -12,7 +12,7 @@
     "homepage": "https://github.com/alireza-h/php-openapi",
     "require": {
         "php": "^7.4|^8.0",
-        "fzaninotto/faker": "~1.9",
+        "fakerphp/faker": "^1.21.0",
         "ext-json": "*"
     },
     "autoload": {
